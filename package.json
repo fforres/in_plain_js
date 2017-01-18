@@ -7,7 +7,9 @@
     "type": "git"
   },
   "scripts": {
-    "start": "reload src -d src/ -p 3001 -v -b"
+    "src": "reload src -d src/ -p 3001 -v -b",
+    "netflix": "reload netflix -d src/ -p 3001 -v -b",
+    "start": "ntl"
   },
   "author": "fetorres <fetorres@groupon.com>",
   "license": "MIT",
