@@ -1,0 +1,17 @@
+{
+  "name": "plainjs_netflix",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "url": "https://github.com/fforres/plainjs_netflix",
+    "type": "git"
+  },
+  "scripts": {
+    "start": "reload src -d src/ -p 3001 -v -b"
+  },
+  "author": "fetorres <fetorres@groupon.com>",
+  "license": "MIT",
+  "dependencies": {
+    "reload": "^1.1.0"
+  }
+}
