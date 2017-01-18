@@ -1,0 +1,26 @@
+/*
+red: #E50914
+*/
+
+body {
+  background-color: #141414;
+}
+button.btn {
+  border: none;
+  background: none;
+  background-color: none;
+  color: #E50914;
+}
+
+.billboard {
+  height: 6em;
+  background-color: lightgrey;
+  margin-top: 1em;
+  width: 100vw;
+}
+.rows {
+  height: 6em;
+  background-color: lightgrey;
+  margin-top: 1em;
+  width: 100vw;
+}

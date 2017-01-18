@@ -1,0 +1,11 @@
+.topbarWrapper {
+  position: fixed;
+  width: 100vw;
+}
+.topbar {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  padding: 2%;
+  justify-content: space-between;
+}

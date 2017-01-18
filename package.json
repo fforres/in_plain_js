@@ -7,8 +7,8 @@
     "type": "git"
   },
   "scripts": {
-    "src": "reload src -d src/ -p 3001 -v -b",
-    "netflix": "reload netflix -d src/ -p 3001 -v -b",
+    "src": "reload -d src/ -p 3001 -v -b",
+    "netflix": "reload -d netflix/ -p 3001 -v -b",
     "start": "ntl"
   },
   "author": "fetorres <fetorres@groupon.com>",
