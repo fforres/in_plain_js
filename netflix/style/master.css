@@ -17,5 +17,5 @@ button.btn {
 .rows {
   height: 6em;
   background-color: lightgrey;
-  width: 100vw;
+  width: 100%;
 }

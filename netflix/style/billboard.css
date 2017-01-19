@@ -1,7 +1,7 @@
 .billboard {
   height: 45vw;
   margin: 0;
-  width: 100vw;
+  width: 100%;
   display: flex;
   align-content: center;
   justify-content: flex-start;
@@ -9,9 +9,9 @@
 
 .billboard .image {
   position: absolute;
-  height: 50vw;
+  height: 47vw;
   z-index: 0;
-  width: 100vw;
+  width: 100%;
   background-image:
     linear-gradient(
       rgba(0, 0, 0, 0.5),
