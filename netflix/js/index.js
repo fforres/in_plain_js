@@ -1,6 +1,8 @@
 (() => {
   var youtubeIds = [
     'UC7tUsO3S7424TMcgSCUOCow', //Noders
+    'UCO1cgjhGzsSYb1rsB4bFe4Q', //Fun fun function
+    'UCzoVCacndDCfGDf41P-z0iA', //JSConf
   ]
   var $row = document.getElementById('mainView').getElementsByClassName('rows')[0];
 
@@ -44,7 +46,6 @@
       console.log(this.$el)
       $row.appendChild(this.$el);
     } else if(this.videos) {
-      console.log('seteando videos');
       this.videos.forEach(el => {
         var cell = this.createCell(el);
         this.$row.appendChild(cell);
