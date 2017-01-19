@@ -7,6 +7,7 @@
     "type": "git"
   },
   "scripts": {
+    "deploy": "gh-pages -d . -v node_modules",
     "src": "reload -d src/ -p 3001 -v -b",
     "netflix": "reload -d netflix/ -p 3001 -v -b",
     "start": "ntl"
@@ -14,6 +15,7 @@
   "author": "fetorres <fetorres@groupon.com>",
   "license": "MIT",
   "dependencies": {
+    "gh-pages": "^0.12.0",
     "ntl": "^1.1.3",
     "reload": "^1.1.0"
   }
