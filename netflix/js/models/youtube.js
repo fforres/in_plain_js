@@ -54,3 +54,11 @@ window.Youtube = (() => {
 
   return Youtube;
 })()
+//UC7tUsO3S7424TMcgSCUOCow
+
+/*
+Usage.
+new y = Youtube() // Instantiates the Youtube Queries Object
+y.setChannel(<ChannelId>) //Sets Channel Id for queries
+y.getChannelVideos() // <Promise> Resolves to a "data" object with the videos on "data.items"
+*/

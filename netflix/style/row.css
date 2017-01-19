@@ -1,0 +1,21 @@
+.rows {
+  overflow: hidden
+  position: relative;
+}
+.rows .row-container {
+  height: 10vw;
+  overflow-x: visible;
+  width: 100vw;
+  max-width: 100vw;
+}
+.rows .row-container .row {
+  position: absolute;
+  display: flex;
+  flex-flow: row;
+}
+.rows .row .cell{
+  width: 16vw;
+  height: 9vw;
+  background-color: grey;
+  margin-left: 0.5rem;
+}
