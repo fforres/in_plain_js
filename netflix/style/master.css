@@ -21,6 +21,5 @@ button.btn {
 }
 
 #mainView {
-  overflow: hidden;
   position:relative;
 }

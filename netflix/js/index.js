@@ -17,6 +17,7 @@
     this.youtube
       .getChannelVideos()
       .then((data) => {
+        console.log(data);
         this.setVideos(data.items);
       })
     this.update$El();
@@ -53,22 +54,23 @@
     }
   }
 
+
   Row.prototype.createCell = function createCell(data) {
-    // console.log(data);
+    console.log(data);
     var body = document.createElement('div');
     body.className = 'cell';
 
     var image = document.createElement('div');
     image.className = 'image';
     image.setAttribute('style', `
-      background-image: url('${data.snippet.thumbnails.default.url}');
+      background-image: url('${data.snippet.thumbnails.high.url}');
       background-repeat: no-repeat;
       background-size: cover;
     `);
 
     var text = document.createElement('div');
-    text.className = 'text'
-    text.innerHTML = `<span>${data.snippet.title}<span>`
+    text.className = 'text-area'
+    text.innerHTML = `<div class="title"><span>${data.snippet.title}</span></div>`
 
     body.appendChild(image);
     body.appendChild(text);
