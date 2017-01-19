@@ -1,0 +1,21 @@
+/*
+red: #E50914
+*/
+
+body {
+  background-color: #141414;
+  margin: 0em;
+  padding: 0em;
+}
+button.btn {
+  border: none;
+  background: none;
+  background-color: none;
+  color: #E50914;
+}
+
+#netfleex {
+  width: 100%;
+  max-width: 100%;
+
+}
