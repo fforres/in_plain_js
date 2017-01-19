@@ -14,8 +14,10 @@
   flex-flow: row;
 }
 .rows .row .cell{
+  box-sizing: border-box;
   width: 16vw;
   height: 9vw;
   background-color: grey;
-  margin-left: 0.5rem;
+  margin-right: 0.3vw;
+  margin-left: 0.3vw;
 }

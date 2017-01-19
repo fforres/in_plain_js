@@ -17,7 +17,7 @@
       rgba(0, 0, 0, 0.5),
       rgba(0, 0, 0, 0.5)
     ),
-    url('/imgs/bg.jpg');
+    url('../imgs/bg.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

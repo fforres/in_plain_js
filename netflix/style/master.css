@@ -19,3 +19,8 @@ button.btn {
   max-width: 100%;
 
 }
+
+#mainView {
+  overflow: hidden;
+  position:relative;
+}
