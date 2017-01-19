@@ -14,8 +14,8 @@ button.btn {
   color: #E50914;
 }
 
-.rows {
-  height: 6em;
-  background-color: lightgrey;
+#netfleex {
   width: 100%;
+  max-width: 100%;
+
 }

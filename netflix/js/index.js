@@ -2,6 +2,7 @@
   var youtubeIds = [
     'UC7tUsO3S7424TMcgSCUOCow', //Noders
   ]
+  var $row = document.getElementById('mainView').getElementsByClassName('rows')[0];
 
   function Row(){
     this.$el = null;
@@ -9,6 +10,7 @@
   }
 
   Row.prototype.init = function init(id) {
+    this.id = id;
     this.youtube = new Youtube().setChannel(id);
     this.youtube
       .getChannelVideos()
@@ -22,35 +24,57 @@
 
   Row.prototype.setVideos = function setVideos(videos) {
     this.videos = videos;
-    console.log(this.videos)
+    // console.log(this.videos)
     this.update$El();
   }
 
 
   Row.prototype.update$El = function update$El() {
-    if(!this.$el) {
+    if(!this.$el || !$row.getElementsByClassName(this.id)[0]) {
+      var rowContainer = document.createElement('div');
+      rowContainer.className = `${this.id} row-container`;
+
+      var row = document.createElement('div');
+      row.className = 'row'
+
+      rowContainer.append(row);
+
+      this.$el = rowContainer;
+      this.$row = rowContainer.getElementsByClassName('row')[0];
+      console.log(this.$el)
+      $row.appendChild(this.$el);
+    } else if(this.videos) {
+      console.log('seteando videos');
+      this.videos.forEach(el => {
+        var cell = this.createCell(el);
+        this.$row.appendChild(cell);
+      })
     }
   }
 
+  Row.prototype.createCell = function createCell(data) {
+    // console.log(data);
+    var body = document.createElement('div');
+    body.className = 'cell';
 
-  var rows = document.getElementsByClassName('rows');
-  console.log('------------')
-  console.log(rows)
-  console.log(rows.length)
-  for (var i = 0; i < rows.length; i++) {
-    console.log(rows[i])
+    var image = document.createElement('div');
+    image.className = 'image';
+    image.setAttribute('style', `
+      background-image: url('${data.snippet.thumbnails.default.url}');
+      background-repeat: no-repeat;
+      background-size: cover;
+    `);
+
+    var text = document.createElement('div');
+    text.className = 'text'
+    text.innerHTML = `<span>${data.snippet.title}<span>`
+
+    body.appendChild(image);
+    body.appendChild(text);
+
+    return body;
   }
-  console.log('------------')
-
-
-  youtubeIds.forEach((el) => {
-    var el = document.createElement("div");
-    el.id = el;
-    el.class = 'row'
-  })
   var row = youtubeIds.map((el) => {
     return new Row().init(el)
   })
-
-  console.log(row);
 })()
