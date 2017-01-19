@@ -7,7 +7,7 @@
     "type": "git"
   },
   "scripts": {
-    "deploy": "gh-pages -d .",
+    "deploy": "gh-pages -d . -v node_modules",
     "src": "reload -d src/ -p 3001 -v -b",
     "netflix": "reload -d netflix/ -p 3001 -v -b",
     "start": "ntl"
