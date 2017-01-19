@@ -3,21 +3,61 @@
   position: relative;
 }
 .rows .row-container {
-  height: 10vw;
+  height: 13vw;
   overflow-x: visible;
   width: 100vw;
   max-width: 100vw;
 }
 .rows .row-container .row {
+  height: 12vw;
   position: absolute;
   display: flex;
   flex-flow: row;
 }
 .rows .row .cell{
+  position: relative;
   box-sizing: border-box;
   width: 16vw;
-  height: 9vw;
+  height: 12vw;
   background-color: grey;
   margin-right: 0.3vw;
   margin-left: 0.3vw;
+  transition: all .2s ease-in-out;
+}
+.cell:hover {
+  transform: scale(1.4);
+  width: calc(16vw * 1.4);
+  z-index: 2;
+}
+
+.rows .row .cell .image{
+  z-index: 0;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.rows .row .cell .text-area{
+  background-color: rgba(0,0,0,0.3);
+  overflow: hidden;
+  z-index: 1;
+  position: absolute;
+  color: white;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-content: center;
+}
+.rows .row .cell .text-area .title {
+  background-color: rgba(0,0,0,0.3);
+  padding-top: 0.6em;
+  padding-left: 0.6em;
+  padding-right: 0.6em;
+  box-sizing: border-box;
+  vertical-align: bottom;
+  width: 100%;
+  height: 40%;
+  font-size: 0.95vw;
 }
