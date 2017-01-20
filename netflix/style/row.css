@@ -2,15 +2,20 @@
   overflow: hidden;
   position: relative;
 }
-.rows .row-container {
-  height: 15vw;
+.rows .row-wrapper {
+  position: relative;
   width: 100vw;
+  height: 16.5vw;
+}
+.rows .row-container {
+  height: 16.5vw;
+  width: 100vw;
+  position: absolute;
   max-width: 100vw;
   overflow: hidden;
-  position: relative;
 }
 .rows .row-container .row {
-  height: 12vw;
+  margin-top: 1.5vw;
   position: absolute;
   display: flex;
   flex-flow: row;
@@ -18,24 +23,48 @@
   padding-right: 0.8em;
 }
 
+
+/*Cell CSS*/
+.scroller {
+  position: absolute;
+  z-index: 2;
+  margin-top: 1vw;
+  width: 6vw;
+  min-width: 2em;
+  height: 14.5vw;
+}
+.scroller.left {
+  left: 0;
+  background-color: rgba(0,0,0,0.4);
+}
+.scroller.right {
+  right:0;
+  background-color: rgba(0,0,0,0.4);
+}
+
 /*Cell CSS*/
 .cell{
   position: relative;
   box-sizing: border-box;
-  width: 16vw;
-  height: 12vw;
+  width: 18vw;
+  height: 13.5vw;
   background-color: rgba(0,0,0,0.7);
   margin-right: 0.3vw;
   margin-left: 0.3vw;
   transition: all .2s ease-in-out;
 }
+
 .cell:hover {
-  transform: scale(1.4);
-  width: calc(16vw * 1.4);
+  transform: scale(1.2);
+  width: calc(16vw * 1.2);
   z-index: 2;
+}
+.cell:hover .image {
+  background-position-y: -1.2vw;
 }
 
 .cell .image{
+  transition: background-position-y 250ms;
   z-index: 0;
   position: absolute;
   height: 100%;
@@ -65,4 +94,11 @@
   width: 100%;
   height: 40%;
   font-size: 0.94vw;
+}
+
+.cell .text-area .title .link {
+  padding-left: 0.3em;
+  text-decoration: none;
+  color: white;
+  font-size: 1.4em
 }
