@@ -66,9 +66,11 @@
         this.hovered = false;
       });
       rightScroller.addEventListener('mousedown', (e) => {
+        isActive = true;
         this.startScrolling('right');
       });
       rightScroller.addEventListener('mouseup', (e) => {
+        isActive = true;
         this.stopScrolling();
       });
 
