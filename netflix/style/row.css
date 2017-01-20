@@ -164,3 +164,8 @@ body.is-mobile .row-container {
 
 @media (max-width: 420px) {
 }
+
+body.is-mobile .cell:hover {
+  transform: none;
+
+}
