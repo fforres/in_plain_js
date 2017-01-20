@@ -31,9 +31,10 @@ window.Youtube = (() => {
     return new Promise((resolve, reject) => {
       var xhr = new XMLHttpRequest();
       xhr.open("GET", this.videosChannelUrl(), true);
-      xhr.onload = function (e) {
+      xhr.onload = (e) => {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
+            // this.send_message_to_sw(JSON.parse(xhr.responseText))
             resolve(JSON.parse(xhr.responseText));
           } else {
             reject(JSON.parse(xhr.statusText));
@@ -50,6 +51,17 @@ window.Youtube = (() => {
   Youtube.prototype.setChannel = function(id){
     this.channelId = id;
     return this;
+  }
+
+  Youtube.prototype.send_message_to_sw = function(msg){
+    return new Promise((resolve, reject) => {
+      var OB = {
+        data: msg,
+        url: this.videosChannelUrl(),
+      }
+      console.log(OB);
+      navigator.serviceWorker.controller.postMessage("Client 1 says '"+msg+"'");
+    })
   }
 
   return Youtube;

@@ -1,9 +1,5 @@
 (() => {
-  var youtubeIds = [
-    'UC7tUsO3S7424TMcgSCUOCow', //Noders
-    'UCO1cgjhGzsSYb1rsB4bFe4Q', //Fun fun function
-    'UCzoVCacndDCfGDf41P-z0iA', //JSConf
-  ]
+  youtubeIds = window.youtubeIds;
   var $row = document.getElementById('mainView').getElementsByClassName('rows')[0];
 
   function Row(){
@@ -17,7 +13,6 @@
     this.youtube
       .getChannelVideos()
       .then((data) => {
-        console.log(data);
         this.setVideos(data.items);
       })
     this.update$El();
@@ -27,7 +22,6 @@
 
   Row.prototype.setVideos = function setVideos(videos) {
     this.videos = videos;
-    // console.log(this.videos)
     this.update$El();
   }
 
@@ -44,7 +38,6 @@
 
       this.$el = rowContainer;
       this.$row = rowContainer.getElementsByClassName('row')[0];
-      console.log(this.$el)
       $row.appendChild(this.$el);
     } else if(this.videos) {
       this.videos.forEach(el => {
@@ -56,7 +49,6 @@
 
 
   Row.prototype.createCell = function createCell(data) {
-    console.log(data);
     var body = document.createElement('div');
     body.className = 'cell';
 
