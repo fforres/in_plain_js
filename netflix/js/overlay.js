@@ -1,4 +1,4 @@
-// (()=>{
+(()=>{
   $overlay = document.getElementById('overlay');
   $close = $overlay.getElementsByClassName('close')[0];
 
@@ -29,7 +29,9 @@
       $overlay.append($iframe);
     } else {
       $overlay.className = 'hidden';
-      $overlay.removeChild($overlay.childNodes[3]);
+      if ($overlay.childNodes[3]) {
+        $overlay.removeChild($overlay.childNodes[3]);
+      }
     }
   }
-// })()
+})()
