@@ -1,13 +1,12 @@
 .rows {
-  overflow: hidden
+  overflow: hidden;
   position: relative;
 }
 .rows .row-container {
-  height: 13vw;
-  overflow-x: visible;
+  height: 15vw;
   width: 100vw;
   max-width: 100vw;
-  overflow: scroll;
+  overflow: hidden;
   position: relative;
 }
 .rows .row-container .row {
@@ -65,5 +64,5 @@
   vertical-align: bottom;
   width: 100%;
   height: 40%;
-  font-size: 0.95vw;
+  font-size: 0.94vw;
 }
