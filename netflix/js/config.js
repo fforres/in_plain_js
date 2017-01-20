@@ -6,3 +6,7 @@ window.youtubeIds = [
 ]
 
 ENV = (()=>(this.location.host.lastIndexOf('localhost') !== -1))()
+
+console.log(isMobile.any)
+console.log(isMobile)
+document.body.className = (isMobile.any? 'is-mobile' : '');

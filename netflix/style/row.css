@@ -25,6 +25,13 @@
 
 
 /*Cell CSS*/
+body.is-mobile .scroller {
+  display: none;
+}
+body.is-mobile .row-container {
+  overflow-x: scroll;
+}
+
 .scroller {
   position: absolute;
   z-index: 2;
@@ -108,10 +115,10 @@
 @media (max-width: 650px) {
 
   .rows .row-wrapper {
-    height: 21vw;
+    height: 25vw;
   }
   .rows .row-container {
-    height: 21vw;
+    height: 28vw;
   }
 
   .cell{
@@ -119,11 +126,20 @@
     height: 21vw;
   }
 
+  .cell:hover {
+    transform: scale(1.2);
+    width: calc(28vw * 1.2);
+    z-index: 1;
+  }
+
   .cell .text-area .title {
     height: 40%;
     font-size: 1.5vw;
   }
 
+  .scroller {
+    height: 22vw;
+  }
 }
 
 @media (max-width: 420px) {
