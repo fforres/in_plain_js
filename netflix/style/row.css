@@ -56,7 +56,7 @@
 
 .cell:hover {
   transform: scale(1.2);
-  width: calc(16vw * 1.2);
+  width: calc(18vw * 1.2);
   z-index: 1;
 }
 .cell:hover .image {
@@ -101,4 +101,28 @@
   text-decoration: none;
   color: white;
   font-size: 1.4em
+}
+
+
+
+@media (max-width: 650px) {
+
+}
+  .rows .row-wrapper {
+    height: 21vw;
+  }
+  .rows .row-container {
+    height: 21vw;
+  }
+
+  .cell{
+    width: 28vw;
+    height: 21vw;
+  }
+
+  .cell .text-area .title {
+    height: 40%;
+    font-size: 1.5vw;
+  }
+
 }

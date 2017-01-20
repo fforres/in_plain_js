@@ -2,15 +2,18 @@
   position: fixed;
   z-index: 1;
   width: 100%;
-  background-color: rgba(0,0,0,0.3)
+  background-color: rgba(0,0,0,0.5);
+  border-bottom-color: rgba(0,0,0,0.7);
+  border-bottom-width: 1px;
+  border-bottom-style: solid
 }
 .topbar {
   display: flex;
   flex-direction: row;
   align-content: center;
-  padding: 2%;
-  padding-left: 3%;
-  padding-right: 3%;
+  padding: 0.8em;
+  padding-left: 1em;
+  padding-right: 1em;
   justify-content: space-between;
 }
 
@@ -25,6 +28,7 @@
   background-color: none;
   text-decoration: none;
   color: #E50914;
+  font-size: 1em;
   margin-left: 1em;
 }
 
@@ -40,4 +44,17 @@
 
 .topbar nav .btn .icon {
   height: 2rem;
+}
+
+
+@media (max-width: 650px) {
+  .topbar nav .btn {
+    font-size: 0.8em;
+  }
+}
+
+@media (max-width: 420px) {
+  .topbar nav .btn {
+    font-size: 0.6em;
+  }
 }
