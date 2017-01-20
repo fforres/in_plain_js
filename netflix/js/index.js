@@ -5,6 +5,7 @@
   function Row(){
     this.$el = null;
     this.videos = [];
+    this.position = 0;
   }
 
   Row.prototype.init = function init(id) {
@@ -25,19 +26,45 @@
     this.update$El();
   }
 
-
   Row.prototype.update$El = function update$El() {
     if(!this.$el || !$row.getElementsByClassName(this.id)[0]) {
+      var rowWrapper = document.createElement('div');
+      rowWrapper.className = `${this.id} row-wrapper`;
+
       var rowContainer = document.createElement('div');
-      rowContainer.className = `${this.id} row-container`;
+      rowContainer.className = 'row-container';
+
 
       var row = document.createElement('div');
       row.className = 'row'
 
+      var leftScroller = document.createElement('div');
+      leftScroller.className = 'scroller left';
+      leftScroller.addEventListener('mouseenter', (e) => {
+        this.startScrolling('left');
+      })
+      leftScroller.addEventListener('mouseleave', (e) => {
+        this.stopScrolling();
+      })
+
+      var rightScroller = document.createElement('div');
+      rightScroller.className = 'scroller right';
+      rightScroller.addEventListener('mouseenter', (e) => {
+        this.startScrolling('right');
+      })
+      rightScroller.addEventListener('mouseleave', (e) => {
+        this.stopScrolling();
+      })
+
       rowContainer.append(row);
 
-      this.$el = rowContainer;
-      this.$row = rowContainer.getElementsByClassName('row')[0];
+      rowWrapper.append(leftScroller);
+      rowWrapper.append(rightScroller);
+      rowWrapper.append(rowContainer);
+
+      this.$container = rowContainer;
+      this.$el = rowWrapper;
+      this.$row = row;
       $row.appendChild(this.$el);
     } else if(this.videos) {
       this.videos.forEach(el => {
@@ -45,6 +72,25 @@
         this.$row.appendChild(cell);
       })
     }
+  }
+
+  Row.prototype.startScrolling = function startScrolling(direction) {
+    console.log(direction)
+    if(direction === 'left') {
+      var pxs = -5;
+    } else {
+      var pxs = 5;
+    }
+    console.log(pxs);
+    if (!this.scrollerInterval) {
+      this.scrollerInterval = setInterval(() => {
+        this.$container.scrollLeft = this.$container.scrollLeft + pxs;
+      }, 15)
+    }
+  }
+  Row.prototype.stopScrolling = function startScrolling(direction) {
+    clearInterval(this.scrollerInterval)
+    delete this.scrollerInterval;
   }
 
 
