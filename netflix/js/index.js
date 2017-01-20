@@ -8,9 +8,10 @@
     this.position = 0;
   }
 
-  Row.prototype.init = function init(id) {
-    this.id = id;
-    this.youtube = new Youtube().setChannel(id);
+  Row.prototype.init = function init(el) {
+    this.id = el['id'];
+    this.name = el['name'];
+    this.youtube = new Youtube().setChannel(this.id);
     this.youtube
       .getChannelVideos()
       .then((data) => {
@@ -58,6 +59,11 @@
 
       rowContainer.append(row);
 
+      var title = document.createElement('div');
+      title.className = 'title';
+      title.innerText = `${this.name}`;
+
+      rowWrapper.append(title);
       rowWrapper.append(leftScroller);
       rowWrapper.append(rightScroller);
       rowWrapper.append(rowContainer);
@@ -65,6 +71,7 @@
       this.$container = rowContainer;
       this.$el = rowWrapper;
       this.$row = row;
+      console.log(this.$row);
       $row.appendChild(this.$el);
     } else if(this.videos) {
       this.videos.forEach(el => {
