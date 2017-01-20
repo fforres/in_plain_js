@@ -108,7 +108,13 @@
 
     var text = document.createElement('div');
     text.className = 'text-area'
-    text.innerHTML = `<div class="title"><span>${data.snippet.title}</span></div>`
+    text.innerHTML = `<div class="title">
+      <span>${data.snippet.title}</span>
+      <a
+        class="link"
+        target="_blank"
+        href="https://www.youtube.com/watch?v=${data.id.videoId}"> - 🔗</a>
+    </div>`
 
     body.appendChild(image);
     body.appendChild(text);

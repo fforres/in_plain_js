@@ -95,3 +95,10 @@
   height: 40%;
   font-size: 0.94vw;
 }
+
+.cell .text-area .title .link {
+  padding-left: 0.3em;
+  text-decoration: none;
+  color: white;
+  font-size: 1.4em
+}
