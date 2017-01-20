@@ -7,15 +7,22 @@
   width: 100vw;
   height: 16.5vw;
 }
+
+.rows .row-wrapper>.title {
+  color: #696969;
+  margin-top: 2em;
+  margin-left: 1em;
+}
+
 .rows .row-container {
-  height: 16.5vw;
+  height: 14.5vw;
   width: 100vw;
   position: absolute;
   max-width: 100vw;
   overflow: hidden;
 }
 .rows .row-container .row {
-  margin-top: 1.5vw;
+  margin-top: 0.5vw;
   position: absolute;
   display: flex;
   flex-flow: row;
@@ -35,18 +42,16 @@ body.is-mobile .row-container {
 .scroller {
   position: absolute;
   z-index: 2;
-  margin-top: 1vw;
   width: 6vw;
   min-width: 2em;
   height: 14.5vw;
+  background-color: rgba(0,0,0,0.3);
 }
 .scroller.left {
   left: 0;
-  background-color: rgba(0,0,0,0.4);
 }
 .scroller.right {
   right:0;
-  background-color: rgba(0,0,0,0.4);
 }
 
 /*Cell CSS*/
@@ -143,4 +148,9 @@ body.is-mobile .row-container {
 }
 
 @media (max-width: 420px) {
+}
+
+body.is-mobile .cell:hover {
+  transform: none;
+
 }
