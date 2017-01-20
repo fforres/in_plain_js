@@ -19,3 +19,7 @@ button.btn {
   max-width: 100%;
 
 }
+
+#mainView {
+  position:relative;
+}

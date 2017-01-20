@@ -1,7 +1,5 @@
 (() => {
-  var youtubeIds = [
-    'UC7tUsO3S7424TMcgSCUOCow', //Noders
-  ]
+  youtubeIds = window.youtubeIds;
   var $row = document.getElementById('mainView').getElementsByClassName('rows')[0];
 
   function Row(){
@@ -24,7 +22,6 @@
 
   Row.prototype.setVideos = function setVideos(videos) {
     this.videos = videos;
-    // console.log(this.videos)
     this.update$El();
   }
 
@@ -41,10 +38,8 @@
 
       this.$el = rowContainer;
       this.$row = rowContainer.getElementsByClassName('row')[0];
-      console.log(this.$el)
       $row.appendChild(this.$el);
     } else if(this.videos) {
-      console.log('seteando videos');
       this.videos.forEach(el => {
         var cell = this.createCell(el);
         this.$row.appendChild(cell);
@@ -52,22 +47,22 @@
     }
   }
 
+
   Row.prototype.createCell = function createCell(data) {
-    // console.log(data);
     var body = document.createElement('div');
     body.className = 'cell';
 
     var image = document.createElement('div');
     image.className = 'image';
     image.setAttribute('style', `
-      background-image: url('${data.snippet.thumbnails.default.url}');
+      background-image: url('${data.snippet.thumbnails.high.url}');
       background-repeat: no-repeat;
       background-size: cover;
     `);
 
     var text = document.createElement('div');
-    text.className = 'text'
-    text.innerHTML = `<span>${data.snippet.title}<span>`
+    text.className = 'text-area'
+    text.innerHTML = `<div class="title"><span>${data.snippet.title}</span></div>`
 
     body.appendChild(image);
     body.appendChild(text);
