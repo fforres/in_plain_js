@@ -1,6 +1,6 @@
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
-    if(!!ENV) {
+    if(!ENV) {
       navigator.serviceWorker.register('./general.js').then(function(registration) {
         // Registration was successful
         console.log('ServiceWorker registration successful with scope: ', registration.scope);
