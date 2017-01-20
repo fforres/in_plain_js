@@ -95,8 +95,9 @@
 
 
   Row.prototype.createCell = function createCell(data) {
-    var body = document.createElement('div');
-    body.className = 'cell';
+    var cell = document.createElement('a');
+    cell.href = `#${data.id.videoId}`;
+    cell.className = 'cell';
 
     var image = document.createElement('div');
     image.className = 'image';
@@ -116,10 +117,10 @@
         href="https://www.youtube.com/watch?v=${data.id.videoId}"> - 🔗</a>
     </div>`
 
-    body.appendChild(image);
-    body.appendChild(text);
+    cell.appendChild(image);
+    cell.appendChild(text);
 
-    return body;
+    return cell;
   }
   var row = youtubeIds.map((el) => {
     return new Row().init(el)

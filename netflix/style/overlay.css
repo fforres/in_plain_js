@@ -1,0 +1,28 @@
+#overlay {
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0,0,0,0.95);
+
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: space-around;
+  align-items: center;  z-index: 10;
+}
+
+#overlay.hidden {
+  transform: scale(0);
+}
+
+#overlay iframe {
+  border: none;
+}
+
+#overlay .close {
+  color: white;
+  cursor: pointer;
+  padding: 1em;
+  font-size: 3vw;
+}

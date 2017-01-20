@@ -2,34 +2,34 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
     <title>NetFleex</title>
     <link rel="stylesheet" href="./style/normalize.css">
     <link rel="stylesheet" href="./style/master.css">
     <link rel="stylesheet" href="./style/topbar.css">
     <link rel="stylesheet" href="./style/billboard.css">
     <link rel="stylesheet" href="./style/row.css">
+    <link rel="stylesheet" href="./style/overlay.css">
     <script defer src="./js/config.js" charset="utf-8"></script>
     <script defer src="./index.js" charset="utf-8"></script>
     <script defer src="./js/models/youtube.js" charset="utf-8"></script>
     <script defer src="./js/index.js" charset="utf-8"></script>
+    <script defer src="./js/overlay.js" charset="utf-8"></script>
   </head>
   <body>
     <div id="netfleex">
       <div class="topbarWrapper">
         <div class="topbar">
-          <div class="left">
-            <nav>
-              <button class="btn" href="#"> NetFleexLogo </button>
-              <button class="btn" href="#"> Browse </button>
-            </nav>
-          </div>
-          <div class="left">
-            <nav>
-              <button class="btn" href="#"> Search </button>
-              <button class="btn" href="#"> Notifications </button>
-              <button class="btn" href="#"> Profile </button>
-            </nav>
-          </div>
+          <nav>
+            <button class="btn" href="#"> NetFleexLogo </button>
+            <button class="btn" href="#"> Browse </button>
+          </nav>
+          <nav>
+            <button class="btn" href="#"> Search </button>
+            <a class="btn with-icon" target="_blank" href="https://github.com/fforres/in_plain_js">
+              <span>Source Code</span> <img class="icon" src="./imgs/github.png" alt="">
+            </a>
+          </nav>
         </div>
       </div>
       <div id="mainView" class="mainView">
@@ -43,6 +43,11 @@
           </div>
         </div>
         <div class="rows"></div>
+      </div>
+    </div>
+    <div id="overlay" class="hidden">
+      <div class="close">
+        Close X
       </div>
     </div>
   </body>
