@@ -5,7 +5,7 @@
   function Row(){
     this.$el = null;
     this.videos = [];
-    this.position = 0;
+    this.speed = 10;
   }
 
   Row.prototype.init = function init(el) {
@@ -30,7 +30,7 @@
   Row.prototype.update$El = function update$El() {
     if(!this.$el || !$row.getElementsByClassName(this.id)[0]) {
       var rowWrapper = document.createElement('div');
-      rowWrapper.className = `${this.id} row-wrapper`;
+      rowWrapper.className = `${this.id} row-wrapper invisible`;
 
       var rowContainer = document.createElement('div');
       rowContainer.className = 'row-container';
@@ -41,21 +41,36 @@
 
       var leftScroller = document.createElement('div');
       leftScroller.className = 'scroller left';
+      leftScroller.innerHTML = '<span class="icon">'+'<'+'</span>';
       leftScroller.addEventListener('mouseenter', (e) => {
-        this.startScrolling('left');
-      })
+        this.hovered = true;
+      });
       leftScroller.addEventListener('mouseleave', (e) => {
+        this.hovered = false;
+      });
+      leftScroller.addEventListener('mousedown', (e) => {
+        this.startScrolling('left');
+      });
+      leftScroller.addEventListener('mouseup', (e) => {
         this.stopScrolling();
-      })
+      });
+
 
       var rightScroller = document.createElement('div');
       rightScroller.className = 'scroller right';
+      rightScroller.innerHTML = '<span class="icon">'+'>'+'</span>';
       rightScroller.addEventListener('mouseenter', (e) => {
-        this.startScrolling('right');
-      })
+        this.hovered = true;
+      });
       rightScroller.addEventListener('mouseleave', (e) => {
+        this.hovered = false;
+      });
+      rightScroller.addEventListener('mousedown', (e) => {
+        this.startScrolling('right');
+      });
+      rightScroller.addEventListener('mouseup', (e) => {
         this.stopScrolling();
-      })
+      });
 
       rowContainer.append(row);
 
@@ -77,21 +92,24 @@
       this.videos.forEach(el => {
         var cell = this.createCell(el);
         this.$row.appendChild(cell);
+        this.$el.className = `${this.id} row-wrapper`;
       })
     }
   }
 
   Row.prototype.startScrolling = function startScrolling(direction) {
-    console.log(direction)
     if(direction === 'left') {
-      var pxs = -5;
+      var pxs = this.speed * -1;
     } else {
-      var pxs = 5;
+      var pxs = this.speed;
     }
-    console.log(pxs);
-    if (!this.scrollerInterval) {
+    if (!this.scrollerInterval && this.hovered) {
       this.scrollerInterval = setInterval(() => {
         this.$container.scrollLeft = this.$container.scrollLeft + pxs;
+        if(!window.isActive) {
+          console.log("should stop!!!")
+          this.stopScrolling()
+        }
       }, 15)
     }
   }

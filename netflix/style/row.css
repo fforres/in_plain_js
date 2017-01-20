@@ -2,6 +2,7 @@
   overflow: hidden;
   position: relative;
 }
+
 .rows .row-wrapper {
   position: relative;
   width: 100vw;
@@ -30,6 +31,10 @@
   padding-right: 0.8em;
 }
 
+.rows .row-wrapper.invisible {
+  visibility: hidden;
+}
+
 
 /*Cell CSS*/
 body.is-mobile .scroller {
@@ -46,6 +51,14 @@ body.is-mobile .row-container {
   min-width: 2em;
   height: 14.5vw;
   background-color: rgba(0,0,0,0.3);
+  cursor: pointer;
+
+  display: flex;
+  right: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
 }
 .scroller.left {
   left: 0;
@@ -53,7 +66,9 @@ body.is-mobile .row-container {
 .scroller.right {
   right:0;
 }
-
+.scroller .icon {
+  color: white;
+}
 /*Cell CSS*/
 .cell{
   position: relative;
@@ -148,9 +163,4 @@ body.is-mobile .row-container {
 }
 
 @media (max-width: 420px) {
-}
-
-body.is-mobile .cell:hover {
-  transform: none;
-
 }
