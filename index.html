@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <title>in_plain.js</title>
+    <style media="screen">
+      body  {
+        background-color: rgba(250, 250, 250, 1);
+        text-rendering: optimizeLegibility;
+        line-height: 1.6em;
+        text-align: center;
+      }
+
+
+      a {
+        text-decoration: none;
+        font-weight: bold;
+        color:#4078c0;
+      }
+      a:visited {
+        font-weight: bold;
+        text-decoration: none;
+        color:#4078c0;
+      }
+
+      .main {
+        font-family: arial;
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+      }
+
+      .container .title {
+        font-size: 3em;
+        text-align: center;
+        padding-bottom: 2em;
+        padding-top: 3em;
+      }
+
+      .container {
+        width: 50vw;
+      }
+      .ejemplos {
+        display: flex;
+        flex-flow: column;
+      }
+      hr {
+        margin-top: 3em;
+        margin-bottom: 3em;
+        width: 50%;
+      }
+      .container h3 {
+        padding-left: 1em;
+        font-size: 1.4em;
+      }
+      .container p {
+      }
+
+      .container .collaborators {
+        padding-bottom: 6em;
+      }
+      .container .collaborators .list {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.3em;
+      }
+      .container .collaborators .list a{
+        margin: 0.4em;
+      }
+
+      @media (max-width: 600px) {
+        .container {
+          width: 90vw;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div class="container">
+        <div class="title">
+          <h1>in_plain.js</h1>
+        </div>
+        <div class="description">
+          <h3>¿Qué es in_plain.js?</h3>
+          <p>
+            <b>in_plain.js</b> es un <a href="#">proyecto opensource</a> que busca "replicar" interfaces y funcionalidades de sitios populares con la finalidad de aprender y practicar Vanilla JS/HTML/CSS.
+          </p>
+          <div class="links">
+            Todo el código está hosteado en <a href="https://github.com/fforres/in_plain_js" target="_blank">Github</a>
+          </div>
+        </div>
+        <hr>
+        <div class="ejemplos">
+          <h3>Proyectos</h3>
+          <a href="/in_plain_js/netflix">Netflix - (NetFleex)</a>
+          <a href="#">Próximamente -> AirBnb - (Er-B-envy)</a>
+          <a href="#">Próximamente -> MercadoLibre - (...)</a>
+        </div>
+
+
+        <hr>
+        <div class="preguntas">
+          <div class="pregunta">
+            <h3>¿Genial, pero... Porqué no usar React / Angular / MooTools / ETC?</h3>
+            <p>No nos malentiendas, usar frameworks es útil:</p>
+            <p>
+                <li>Realiza abstracciones de funcionalidades y utilidades complejas.</li>
+                <li>Te permite crear funcionalidades y tener código en producción rápidamente.</li>
+                <li>Te fuerza a enfocarte en crear valor en tu aplicación más que en la implementación.</li>
+            </p>
+            <p> Pero muchas veces podemos terminar utilizandolos tanto, que perdemos el foco de aprendizaje o adaptabilidad.</p>
+            <p> ¿Has leido avisos de trabajo para <b>Desarrollador jQuery</b> ?  <b>¿Desarrollador Angular?</b>  <b>¿Desarrollador Ember?</b> </p>
+            <p> Como nosotros lo vemos, es que no deberías ser un Desarrollador y tener la capacidad de adaptarse a diferentes frameworks, y en el mundo de la web eso implica conocer <b>Vanilla JS/HTML/CSS</b> </p>
+          </div>
+          <hr>
+          <div class="pregunta">
+            <h3>¿Dónde puedo aprender más sobre Vanilla JS?</h3>
+              <li><a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">Documentación</a></li>
+              <li><a target="_blank" href="http://vanilla-js.com/">Vanilla.js FrameWork</a></li>
+              <li><a target="_blank" href="https://snipcart.com/blog/learn-vanilla-javascript-before-using-js-frameworks/">Interesante Post</a></li>
+          </div>
+        </div>
+        <hr>
+        <div class="collaborators">
+          <h3>Colaboradores</h3>
+          <div class="list">
+            <a target="_blank" href="http://github.com/fforres">@fforres</a>
+            <a target="_blank" href="http://github.com/noders">@noders</a>
+            <a target="_blank" href="#">@CamilaZamora</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
