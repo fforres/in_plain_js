@@ -38,7 +38,25 @@ self.addEventListener('activate', function(event){
 });
 
 self.addEventListener('fetch', function(event) {
-  if (event.request.url.lastIndexOf('googleapi') !== -1) {
+  if (
+    event.request.url.lastIndexOf('googleapi') !== -1
+  ) {
+    event.respondWith(
+      caches.match(event.request).then(function(response) {
+        console.log('found cache!')
+        return response || fetch(event.request);
+      })
+      .then(function(r) {
+        caches.open('v1').then((cache) => {
+          console.log('cached!!!', event.request)
+          cache.put(event.request, r);
+        });
+        return r.clone();
+      })
+    );
+  } else if (
+    event.request.url.lastIndexOf('ytimg') !== -1
+  ) {
     event.respondWith(
       caches.match(event.request).then(function(response) {
         console.log('found cache!')
@@ -53,5 +71,6 @@ self.addEventListener('fetch', function(event) {
       })
     );
   }
+
   return
 });

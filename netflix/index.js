@@ -11,3 +11,11 @@ if ('serviceWorker' in navigator) {
     }
   });
 }
+
+window.onfocus = function () {
+  isActive = true;
+};
+
+window.onblur = function () {
+  isActive = false;
+};
