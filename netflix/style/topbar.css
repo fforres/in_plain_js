@@ -13,3 +13,31 @@
   padding-right: 3%;
   justify-content: space-between;
 }
+
+.topbar nav {
+  display: flex;
+}
+
+.topbar nav .btn {
+  text-decoration: none;
+  border: none;
+  background: none;
+  background-color: none;
+  text-decoration: none;
+  color: #E50914;
+  margin-left: 1em;
+}
+
+.topbar nav a.btn:visited {
+  text-decoration: none;
+}
+
+.topbar nav .btn.with-icon{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.topbar nav .btn .icon {
+  height: 2rem;
+}

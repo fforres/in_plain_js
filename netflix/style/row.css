@@ -57,7 +57,7 @@
 .cell:hover {
   transform: scale(1.2);
   width: calc(16vw * 1.2);
-  z-index: 2;
+  z-index: 1;
 }
 .cell:hover .image {
   background-position-y: -1.2vw;
