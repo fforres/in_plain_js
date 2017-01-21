@@ -16,25 +16,13 @@ var urlsToCache = [
 ];
 
 var data = null;
-// self.addEventListener('install', function(event) {
-//   console.log('installING')
-//   event.waitUntil(
-//     caches.open(CACHE_NAME)
-//       .then(function(cache) {
-//         console.log('Opened cache');
-//         return cache.addAll(urlsToCache);
-//       })
-//   );
-// });
 
 // Install Service Worker
 self.addEventListener('install', function(event){
-  console.log('installed!');
 });
 
 // Service Worker Active
 self.addEventListener('activate', function(event){
-  console.log('activated!');
 });
 
 self.addEventListener('fetch', function(event) {
@@ -43,12 +31,10 @@ self.addEventListener('fetch', function(event) {
   ) {
     event.respondWith(
       caches.match(event.request).then(function(response) {
-        console.log('found cache!')
         return response || fetch(event.request);
       })
       .then(function(r) {
         caches.open('v1').then((cache) => {
-          console.log('cached!!!', event.request)
           cache.put(event.request, r);
         });
         return r.clone();
@@ -59,12 +45,10 @@ self.addEventListener('fetch', function(event) {
   ) {
     event.respondWith(
       caches.match(event.request).then(function(response) {
-        console.log('found cache!')
         return response || fetch(event.request);
       })
       .then(function(r) {
         caches.open('v1').then((cache) => {
-          console.log('cached!!!', event.request)
           cache.put(event.request, r);
         });
         return r.clone();

@@ -3,7 +3,6 @@
   $close = $overlay.getElementsByClassName('close')[0];
 
   $close.addEventListener('click', (e) => {
-    console.log(e)
     window.location.hash = '';
   })
 
@@ -16,7 +15,6 @@
   }
 
   function checkHash(hash) {
-    console.log(hash.length);
     if(hash[0] === '#' && hash.length > 1) {
       $overlay.className = '';
       var videoUrl = `https://www.youtube.com/embed/${hash.slice(1, hash.length)}?autoplay=1`
