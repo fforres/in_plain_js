@@ -9,7 +9,10 @@
 
 .billboard .image {
   position: absolute;
-  height: 47vw;
+  height: 56vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   z-index: 0;
   width: 100%;
   background-image:
@@ -46,9 +49,37 @@
 .billboard .actions .description{
   font-size: 2vw;
   margin:0;
-  margin-bottom: 1vw;
+  margin-bottom: 2vw;
 }
 .billboard .actions .button{
-  font-size: 1vw;
-  margin:0;
+  display: inline-flex;
+  align-items: center;
+  font-size: 1.5vw;
+  padding: 0.5em;
+  padding-left: 1em;
+  padding-right: 1em;
+  background-color: #E50914;
+  border-color: #FF0A16;
+  color: white;
+  text-decoration: none;
+}
+
+.billboard .actions .button .arrow-right {
+  width: 0;
+  height: 0;
+  margin-right: 0.5em;
+  border-top: 1em solid transparent;
+  border-bottom: 1em solid transparent;
+  border-left: 1em solid white;
+  transform: scaleY(0.7);
+}
+.billboard .actions .button:hover {
+  background-color: #FF0A16;
+}
+
+.billboard .image .bottom-gradient {
+  background: linear-gradient(rgba(0,0,0,0), #141414); /* Standard syntax */
+  display: inline-block;
+  width: 100%;
+  height: 7em;
 }

@@ -1,6 +1,6 @@
 (() => {
   youtubeIds = window.youtubeIds;
-  var $row = document.getElementById('mainView').getElementsByClassName('rows')[0];
+  var $rowsContainer = document.getElementById('mainView').getElementsByClassName('rows')[0];
 
   function Row(){
     this.$el = null;
@@ -21,95 +21,79 @@
     return this;
   }
 
-
   Row.prototype.setVideos = function setVideos(videos) {
     this.videos = videos;
     this.update$El();
   }
 
   Row.prototype.update$El = function update$El() {
-    if(!this.$el || !$row.getElementsByClassName(this.id)[0]) {
+    if(!this.$el || !$rowsContainer.getElementsByClassName(this.id)[0]) {
       var rowWrapper = document.createElement('div');
       rowWrapper.className = `${this.id} row-wrapper invisible`;
+      rowWrapper.innerHTML = `<div class="title">${this.name}</div>
+        <div class="scroller left">
+          <span class="icon">&lt;</span>
+        </div>
+        <div class="scroller right">
+          <span class="icon">&gt;</span>
+        </div>
+        <div class="row-container">
+          <div class="row"></div>
+        </div>`;
+      var scrollers = rowWrapper.getElementsByClassName('scroller');
 
-      var rowContainer = document.createElement('div');
-      rowContainer.className = 'row-container';
+      for (var i = 0; i < scrollers.length; i++) {
+        scrollers[i].addEventListener('mouseenter', (e) => {
+          this.hovered = true;
+        });
+        scrollers[i].addEventListener('mouseleave', (e) => {
+          this.hovered = false;
+        });
+      }
 
-
-      var row = document.createElement('div');
-      row.className = 'row'
-
-      var leftScroller = document.createElement('div');
-      leftScroller.className = 'scroller left';
-      leftScroller.innerHTML = '<span class="icon">'+'<'+'</span>';
-      leftScroller.addEventListener('mouseenter', (e) => {
-        this.hovered = true;
-      });
-      leftScroller.addEventListener('mouseleave', (e) => {
-        this.hovered = false;
-      });
-      leftScroller.addEventListener('mousedown', (e) => {
-        this.startScrolling('left');
-      });
-      leftScroller.addEventListener('mouseup', (e) => {
-        this.stopScrolling();
-      });
-
-
-      var rightScroller = document.createElement('div');
-      rightScroller.className = 'scroller right';
-      rightScroller.innerHTML = '<span class="icon">'+'>'+'</span>';
-      rightScroller.addEventListener('mouseenter', (e) => {
-        this.hovered = true;
-      });
-      rightScroller.addEventListener('mouseleave', (e) => {
-        this.hovered = false;
-      });
-      rightScroller.addEventListener('mousedown', (e) => {
+      rowWrapper.addEventListener('mousedown', (e) => {
         isActive = true;
-        this.startScrolling('right');
+        if (e.target.className.lastIndexOf('scroller') !== -1) {
+          if(e.target.className.lastIndexOf('right') !== -1) {
+            this.direction = 'right';
+          } else if(e.target.className.lastIndexOf('left') !== -1) {
+            this.direction = 'left';
+          }
+          this.startScrolling();
+        }
       });
-      rightScroller.addEventListener('mouseup', (e) => {
-        isActive = true;
-        this.stopScrolling();
+      rowWrapper.addEventListener('mouseup', (e) => {
+        if (e.target.className.lastIndexOf('scroller') !== -1) {
+          isActive = true;
+          this.direction = false;
+          this.stopScrolling();
+        }
       });
 
-      rowContainer.append(row);
-
-      var title = document.createElement('div');
-      title.className = 'title';
-      title.innerText = `${this.name}`;
-
-      rowWrapper.append(title);
-      rowWrapper.append(leftScroller);
-      rowWrapper.append(rightScroller);
-      rowWrapper.append(rowContainer);
-
-      this.$container = rowContainer;
       this.$el = rowWrapper;
-      this.$row = row;
-      console.log(this.$row);
-      $row.appendChild(this.$el);
+      this.$container = this.$el.getElementsByClassName('row-container')[0];
+      this.$row = this.$el.getElementsByClassName('row')[0];
+      $rowsContainer.append(this.$el);
+
     } else if(this.videos) {
-      this.videos.forEach(el => {
-        var cell = this.createCell(el);
-        this.$row.appendChild(cell);
-        this.$el.className = `${this.id} row-wrapper`;
-      })
+      var cells = this.videos.map(el => this.createCell(el));
+      this.$row.innerHTML = cells.join('');
+      this.$el.className = `${this.id} row-wrapper`;
     }
   }
 
   Row.prototype.startScrolling = function startScrolling(direction) {
-    if(direction === 'left') {
+    if(this.direction === 'left') {
       var pxs = this.speed * -1;
-    } else {
+    } else if(this.direction === 'right'){
       var pxs = this.speed;
     }
     if (!this.scrollerInterval && this.hovered) {
+      console.log('START SCROLLING')
       this.scrollerInterval = setInterval(() => {
+        console.log('scrolling')
         this.$container.scrollLeft = this.$container.scrollLeft + pxs;
-        if(!window.isActive) {
-          console.log("should stop!!!")
+        if(!window.isActive || !this.hovered) {
           this.stopScrolling()
         }
       }, 15)
@@ -118,36 +102,27 @@
   Row.prototype.stopScrolling = function startScrolling(direction) {
     clearInterval(this.scrollerInterval)
     delete this.scrollerInterval;
+    console.log('STOP scrolling')
   }
 
 
   Row.prototype.createCell = function createCell(data) {
-    var cell = document.createElement('a');
-    cell.href = `#${data.id.videoId}`;
-    cell.className = 'cell';
-
-    var image = document.createElement('div');
-    image.className = 'image';
-    image.setAttribute('style', `
-      background-image: url('${data.snippet.thumbnails.high.url}');
-      background-repeat: no-repeat;
-      background-size: cover;
-    `);
-
-    var text = document.createElement('div');
-    text.className = 'text-area'
-    text.innerHTML = `<div class="title">
-      <span>${data.snippet.title}</span>
-      <a
-        class="link"
-        target="_blank"
-        href="https://www.youtube.com/watch?v=${data.id.videoId}"> - 🔗</a>
-    </div>`
-
-    cell.appendChild(image);
-    cell.appendChild(text);
-
-    return cell;
+    var cellHtmlString = `
+    <a href="#${data.id.videoId}" class="cell">
+      <div class="image"
+        style="
+          background-image: url('${data.snippet.thumbnails.high.url}');
+          background-repeat: no-repeat;
+          background-size: cover;
+        "
+      ></div>
+      <div class="text-area">
+        <div class="title">
+          <span>${data.snippet.title}</span>
+        </div>
+      </div>
+    </a>`;
+    return cellHtmlString;
   }
   var row = youtubeIds.map((el) => {
     return new Row().init(el)
