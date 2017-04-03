@@ -59,7 +59,6 @@ window.Youtube = (() => {
         data: msg,
         url: this.videosChannelUrl(),
       }
-      console.log(OB);
       navigator.serviceWorker.controller.postMessage("Client 1 says '"+msg+"'");
     })
   }
