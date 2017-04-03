@@ -25,7 +25,7 @@
         </div>`;
     },
     onMount: function() {
-      API.call().then(data => {
+      API.search().then(data => {
         ENVY.getObservable('queryResults', data)
       })
     },
