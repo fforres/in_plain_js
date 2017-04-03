@@ -1,16 +1,20 @@
 API = {
   search: function () {
-    return this.call('https://api.airbnb.com/v2/search_results?client_id=3092nxybyb0otqw18e8nh5nty')
+    return this.call('//api.airbnb.com/v2/search_results?client_id=3092nxybyb0otqw18e8nh5nty')
   },
   call: function (url) {
     return new Promise((resolve, reject) => {
-      if (window.location.host.lastIndexOf('localhost') !== -1) { //If i'm developing locally
+      if (!(window.location.host.lastIndexOf('localhost') !== -1)) { //If i'm developing locally
         setTimeout(() => {
           resolve(this.dumbData)
-        }, 1)
+        }, 1500)
       } else {
         var xhr = new XMLHttpRequest();
         xhr.open("GET", url, true);
+        xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf8");
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf8");
+
         xhr.onload = function (e) {
           if (xhr.readyState === 4) {
             if (xhr.status === 200) {
