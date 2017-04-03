@@ -3,6 +3,8 @@ API = {
     return this.call('https://api.airbnb.com/v2/search_results?client_id=3092nxybyb0otqw18e8nh5nty')
   },
   call: function (url) {
+    const _url = url;
+    console.log(_url);
     return new Promise((resolve, reject) => {
       if (window.location.host.lastIndexOf('localhost') !== -1) { //If i'm developing locally
         setTimeout(() => {
@@ -10,7 +12,7 @@ API = {
         }, 1)
       } else {
         var xhr = new XMLHttpRequest();
-        xhr.open("GET", url, true);
+        xhr.open("GET", _url, true);
         xhr.onload = function (e) {
           if (xhr.readyState === 4) {
             if (xhr.status === 200) {
