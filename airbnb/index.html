@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Erb-envy</title>
+    <link rel="stylesheet" href="./vendors/normalize.css">
+    <link rel="stylesheet" href="./vendors/fonts.css">
+    <link rel="stylesheet" href="./style/global.css">
+    <link rel="stylesheet" href="./style/title.css">
+    <link rel="stylesheet" href="./style/searchBar.css">
+    <link rel="stylesheet" href="./style/resultsArea.css">
+
+
+    <script defer src="./index.js" charset="utf-8"></script>
+    <script defer src="./vendors/airbnbAPI.js" charset="utf-8"></script>
+    <script defer src="./envy/SearchArea/index.js" charset="utf-8"></script>
+    <script defer src="./envy/ResultsArea/index.js" charset="utf-8"></script>
+
+  </head>
+  <body id="ENVY-APP">
+    <div class="landing">
+      <h1 class="title">
+        <span class="featured">
+          Erb-Envy
+        </span>
+        <span class="lean">Reserva alojamientos únicos y descubre cada destino como un habitante más.</span>
+      </h1>
+    </div>
+    <div class="container">
+      <div type="div" envy-template="SearchArea" class="searchAreaWrapper"></div>
+      <div class="resultArea" envy-template="ResultsArea" envy-data="" envy-title="Results"></div>
+    </div>
+  </body>
+  <script async type="text/javascript">
+    window.onload = function() {
+      ENVY.load();
+    }
+  </script>
+</html>

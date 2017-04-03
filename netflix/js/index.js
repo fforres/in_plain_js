@@ -89,9 +89,7 @@
       var pxs = this.speed;
     }
     if (!this.scrollerInterval && this.hovered) {
-      console.log('START SCROLLING')
       this.scrollerInterval = setInterval(() => {
-        console.log('scrolling')
         this.$container.scrollLeft = this.$container.scrollLeft + pxs;
         if(!window.isActive || !this.hovered) {
           this.stopScrolling()
@@ -102,7 +100,6 @@
   Row.prototype.stopScrolling = function startScrolling(direction) {
     clearInterval(this.scrollerInterval)
     delete this.scrollerInterval;
-    console.log('STOP scrolling')
   }
 
 
