@@ -1,6 +1,11 @@
+.searchAreaWrapper {
+  display: flex;
+  justify-content: center;
+}
 .searchArea {
   width: 100%;
   display: flex;
+  max-width: 58em;
   align-items: center;
   justify-content: space-between;
 }

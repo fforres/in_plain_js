@@ -23,7 +23,12 @@
             </button>
           </li>
         </div>`;
-    }
+    },
+    onMount: function() {
+      API.call().then(data => {
+        ENVY.getObservable('queryResults', data)
+      })
+    },
   })
   ENVY.registerElement(searchAreaElement)
 })();

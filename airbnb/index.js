@@ -1,38 +1,95 @@
 const ENVY = {
   elements: {},
+  observables: {},
   attachedElements: {},
-  observer: {
-    instance: null,
-    handleMutation: null,
-  },
+  // observer: {
+  //   instance: null,
+  //   handleMutation: null,
+  // },
 };
 
 
 /*Attaching Mutation Observers*/
 // create an observer instance
-ENVY.observer.handleMutation = (mutation) => {
-  console.log(mutation);
-};
-ENVY.observer.instance = new MutationObserver(function(mutations) {
-  mutations.forEach(function(mutation) {
-    ENVY.observer.handleMutation(mutation)
-  });
-});
+// ENVY.observer.handleMutation = (mutation) => {
+//   console.log(mutation);
+// };
+// ENVY.observer.instance = new MutationObserver(function(mutations) {
+//   mutations.forEach(function(mutation) {
+//     ENVY.observer.handleMutation(mutation)
+//   });
+// });
 // configuration of the observer:
-var config = { attributes: true, childList: true, characterData: true };
-// pass in the target node, as well as the observer options
-ENVY.observer.instance.observe(document.getElementById('ENVY-APP'), config);
-/*Attaching Mutation Observers*/
+// var config = { attributes: true, childList: true, characterData: true };
+// // pass in the target node, as well as the observer options
+// ENVY.observer.instance.observe(document.getElementById('ENVY-APP'), config);
 
 
-function CustomElement (data) {
-  this.name = data.name;
-  this.template = data.template;
-  this.onMount = data.onMount;
-  this.onDisMount = data.onDisMount;
+/* CREATING OBSERVABLE OBJECT */
+
+function Observable (data = null) {
+  this._data = null;
+  this.listeners = [];
+  if (data) {
+    this.data = data;
+  }
+}
+Observable.prototype.propagateChanges = function propagateChanges() {
+  this.listeners.forEach(el => {
+    if(typeof el === 'function') {
+      el(this._data);
+    }
+  })
+}
+Observable.prototype.addListener = function addListener(listenerFunction) {
+  if(typeof listenerFunction === 'function') {
+    this.listeners.push(listenerFunction)
+    if (this.data) {
+      listenerFunction(this.data);
+    }
+  }
+}
+Object.defineProperty(Observable.prototype, 'data', {
+  get: function getData() {
+    return this._data;
+  },
+  set: function setData(data) {
+    this._data = data;
+    this.propagateChanges();
+  },
+  update: function updateData() {
+    // TODO: Create update function
+    this.propagateChanges();
+  }
+})
+
+ENVY.createObservable = function createObservable(observableName, data = null) {
+  if(!ENVY.observables[observableName]){
+    ENVY.observables[observableName] = new Observable(data);
+    return ENVY.observables[observableName];
+  } else {
+    throw new Error(`Observable with name ${observableName}, already exists`)
+  }
+}
+ENVY.getObservable = function getObservable(observableName, data = null) {
+  if (!ENVY.observables[observableName]) {
+    ENVY.createObservable(observableName);
+  }
+  if(data !== null) {
+    ENVY.observables[observableName].data = data;
+  }
+  return ENVY.observables[observableName];
 }
 
 
+function CustomElement (data) {
+  this.type = 'CustomElement';
+  for (const key in data) {
+    if (data.hasOwnProperty(key)) {
+      this[key] = data[key];
+    }
+  }
+}
 
 ENVY.registerElement = function(elementData) {
   let errMsg = null;
@@ -56,7 +113,6 @@ ENVY.createCustomElement = function(newElementObject) {
 }
  window.onhashchange = () => {
   const hashObject = getHashObject(window.location.hash)
-  console.log(hashObject)
 }
 const getHashObject = ENVY.getHashObject = function getHashObject (hashQuery) {
   const hash = hashQuery[0] === '#' ? hashQuery.slice(1, hashQuery.length) : hashQuery;
@@ -76,15 +132,24 @@ function attachedElements () {
   this.attached = false;
 }
 attachedElements.prototype.attach = function attach(domElement, customElement, startingData) {
-  console.log('hjere')
   this.domNode = domElement;
   this.customElement = customElement;
-  this.domNode.innerHTML = customElement.template();
-  this.data = startingData;
-  console.log(this.data)
+  this.customElement.data = startingData;
+  this.redraw = () => {
+    this.domNode.innerHTML = this.customElement.template()
+  }
+  this.customElement.redraw = this.redraw;
+  this.redraw();
   this.domNode.setAttribute('ENVY-LOADED', true);
+  if(typeof customElement.onMount === 'function') {
+    customElement.onMount();
+  }
 }
-attachedElements.prototype.deAttach = function attach(parentObject) {
+attachedElements.prototype.update = function update(newData) {
+  this
+
+}
+attachedElements.prototype.deAttach = function deAttach(parentObject) {
   this.customElement.onDisMount(this);
   this.domNode.innerHTML = null;
   delete this.domNode.innerHTML;
@@ -92,7 +157,7 @@ attachedElements.prototype.deAttach = function attach(parentObject) {
 
 ENVY.load = function () {
   const elements = document.querySelectorAll('[envy-template]');
-  for (var i = 0; i < elements.length; i++) {
+  for (var i = 0; i < elements.length; i++) { // Logic to initially load "envy" and handles the initial dom elements configuration.
     const domElement = elements.item(i);
     const domElementAttributes = Array.from(domElement.attributes)
     const envyTemplateName = domElementAttributes.find(el => el.name==='envy-template').value;
@@ -100,7 +165,6 @@ ENVY.load = function () {
       const newElement = new attachedElements();
       const envyData = {};
       domElementAttributes.forEach(el => {
-        console.log(el.name.split('-')[0]);
         if (el.name.split('-')[0] === 'envy') {
           const name = el.name;
           envyData[name.substr(5, name.length)] = el.value;
