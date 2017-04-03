@@ -1,0 +1,59 @@
+.resultsArea {
+  display: flex;
+  flex-flow: wrap;
+  flex-direction: row;
+  justify-content: center;
+}
+.resultCard {
+  max-width: 12.5em;
+  overflow: hidden;
+  margin: 0.5em;
+  transition: box-shadow 230ms
+}
+.resultCard .imageWrapper {
+  padding-bottom: 1em;
+}
+.resultCard:hover {
+  box-shadow: 0.5em 0.3em 0.3em rgba(0,0,0,0.3);
+}
+
+.resultCard .imageWrapper .backgroundImage {
+  height: 100%;
+}
+
+.resultCard .cardFooter {
+  text-transform: capitalize;
+  display: flex;
+  flex-direction: column;
+  color: #484848;
+}
+.resultCard .cardFooter p {
+  margin: 0;
+  padding-bottom: 0.5em;
+}
+.resultCard a,
+.resultCard a:active,
+.resultCard a:hover,
+.resultCard a:focus,
+.resultCard a:visited {
+  text-decoration: none
+}
+
+.resultCard .cardFooter .price {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+.resultCard .cardFooter .name {
+  font-size: 1em;
+  letter-spacing: 0.08em;
+}
+
+.resultCard .cardFooter .city {
+  font-size: 0.8em;
+}
+.resultCard .cardFooter .persons {
+  font-size: 0.8em;
+}
+.resultCard .cardFooter  .starsText {
+  font-size: 0.9em;
+}

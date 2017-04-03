@@ -8,10 +8,13 @@
     <link rel="stylesheet" href="./style/global.css">
     <link rel="stylesheet" href="./style/title.css">
     <link rel="stylesheet" href="./style/searchBar.css">
+    <link rel="stylesheet" href="./style/resultsArea.css">
 
 
     <script defer src="./index.js" charset="utf-8"></script>
-    <script defer src="./envy/search-area/index.js" charset="utf-8"></script>
+    <script defer src="./vendors/airbnbAPI.js" charset="utf-8"></script>
+    <script defer src="./envy/SearchArea/index.js" charset="utf-8"></script>
+    <script defer src="./envy/ResultsArea/index.js" charset="utf-8"></script>
 
   </head>
   <body id="ENVY-APP">
@@ -24,8 +27,8 @@
       </h1>
     </div>
     <div class="container">
-      <div type="div" envy-template="SearchArea"></div>
-      <div class="resultArea" envy-template="ResultsArea" envy-data='2'></div>
+      <div type="div" envy-template="SearchArea" class="searchAreaWrapper"></div>
+      <div class="resultArea" envy-template="ResultsArea" envy-data="" envy-title="Results"></div>
     </div>
   </body>
   <script async type="text/javascript">
