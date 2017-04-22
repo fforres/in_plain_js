@@ -11,7 +11,7 @@ if ('serviceWorker' in navigator) {
 }
 
 window.onfocus = function () {
-  isActive = true;
+  isActive = true;   
 };
 
 window.onblur = function () {
