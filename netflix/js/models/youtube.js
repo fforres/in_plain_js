@@ -1,7 +1,7 @@
 window.Youtube = (() => {
   function Youtube() {
     this.config = {}
-    this.config.key = 'AIzaSyAd28gJx_EQblvLmWZJDBgnoGkab1sNHtw';
+    this.config.key = 'AIzaSyCXDXrsBlReOJp_Z5mw9Q943-heSPlzV5M';
     this.config.api = 'https://www.googleapis.com/youtube/v3';
     this.channelId = '';
     this.activitiesUrl = () => `${this.config.api}/activities?part=snippet&channelId=${this.channelId}&key=${this.config.key}`;
